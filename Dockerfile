@@ -1,5 +1,5 @@
 # Public OSRM docker image is too old, apt is not working
-FROM debian:bullseye-slim AS builder
+FROM debian:bookworm-slim AS builder
 
 RUN apt update
 
@@ -24,7 +24,7 @@ RUN /osrm-bin/binding/osrm-partition volga.osrm
 RUN /osrm-bin/binding/osrm-customize volga.osrm
 RUN rm /downloads/volga.osm.pbf
 
-FROM debian:bullseye-slim
+FROM debian:bookworm-slim
 
 COPY --from=builder /downloads /data
 COPY --from=builder /osrm-bin/binding /osrm-bin
