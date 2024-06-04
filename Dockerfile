@@ -16,7 +16,7 @@ RUN tar -xf osrm.tar.gz
 
 # Clone OSRM repository
 RUN apt install -y git
-RUN git clone --single-branch --branch 5.27.1 https://github.com/Project-OSRM/osrm-backend /osrm
+RUN git clone --single-branch --branch v5.27.1 https://github.com/Project-OSRM/osrm-backend /osrm
 
 WORKDIR /downloads
 RUN /osrm-bin/binding/osrm-extract -p /osrm/profiles/car.lua /downloads/volga.osm.pbf
