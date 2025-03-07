@@ -4,7 +4,7 @@ FROM debian:bookworm-slim AS builder
 RUN apt update
 
 # Download map data
-RUN apt install -y wget build-essential
+RUN apt install -y wget build-essential zlib1g-dev
 WORKDIR /downloads
 RUN wget https://download.geofabrik.de/russia/volga-fed-district-latest.osm.pbf -O volga.osm.pbf
 RUN wget https://download.geofabrik.de/russia/ural-fed-district-latest.osm.pbf -O ural.osm.pbf
