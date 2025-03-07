@@ -12,11 +12,13 @@ RUN wget https://download.geofabrik.de/russia/ural-fed-district-latest.osm.pbf -
 RUN wget -O - http://m.m.i24.cc/osmconvert.c | cc -x c - -lz -O3 -o osmconvert
 RUN ./osmconvert volga.osm.pbf --out-o5m | ./osmconvert - ural.osm.pbf -o=ural-volga.pbf
 
+RUN rm volga.osm.pbf ural.osm.pbf
+
 # Download OSRM binaries
 WORKDIR /osrm-bin
 RUN wget https://github.com/Project-OSRM/osrm-backend/releases/download/v5.27.1/node_osrm-v5.27.1-node-v108-linux-x64-Release.tar.gz -O osrm.tar.gz
 RUN apt install -y tar
-RUN tar -xf osrm.tar.gz
+RUN tar -xf osrm.tar.gz && rm osrm.tar.gz
 
 # Clone OSRM repository
 RUN apt install -y git
