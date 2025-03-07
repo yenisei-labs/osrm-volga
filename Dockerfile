@@ -18,14 +18,14 @@ RUN apt update && apt install -y \
     libluajit-5.1-dev \
     liblua5.1-0-dev \
     lua5.1 \
-    pkg-config
+    pkg-config \
+    osmium-tool
 
 WORKDIR /downloads
 RUN wget https://download.geofabrik.de/russia/volga-fed-district-latest.osm.pbf -O volga.osm.pbf && \
     wget https://download.geofabrik.de/russia/ural-fed-district-latest.osm.pbf -O ural.osm.pbf
 
-RUN wget -O - http://m.m.i24.cc/osmconvert.c | cc -x c - -lz -O3 -o osmconvert
-RUN ./osmconvert volga.osm.pbf --out-o5m | ./osmconvert - ural.osm.pbf -o=ural-volga.pbf
+RUN osmium merge volga.osm.pbf ural.osm.pbf -o ural-volga.pbf
 RUN rm volga.osm.pbf ural.osm.pbf
 
 WORKDIR /osrm-bin
