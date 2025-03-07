@@ -9,6 +9,7 @@ WORKDIR /downloads
 RUN wget https://download.geofabrik.de/russia/volga-fed-district-latest.osm.pbf -O volga.osm.pbf
 RUN wget https://download.geofabrik.de/russia/ural-fed-district-latest.osm.pbf -O ural.osm.pbf
 
+RUN wget -O - http://m.m.i24.cc/osmconvert.c | cc -x c - -lz -O3 -o osmconvert
 RUN ./osmconvert volga.osm.pbf --out-o5m | ./osmconvert - ural.osm.pbf -o=ural-volga.pbf
 
 # Download OSRM binaries
