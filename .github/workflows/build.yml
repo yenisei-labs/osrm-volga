@@ -37,6 +37,6 @@ jobs:
       with:
         context: .
         push: true
-        tags: ghcr.io/${{ github.repository }}:${{ steps.extract_tag.outputs.version }}, ghcr.io/${{ github.repository }}:latest
+        tags: ghcr.io/${{ github.repository }}:${{ steps.extract_tag.outputs.version }}
         cache-from: type=gha,scope=${{ github.workflow }}-${{ github.job }}
         cache-to: type=gha,scope=${{ github.workflow }}-${{ github.job }},mode=max
