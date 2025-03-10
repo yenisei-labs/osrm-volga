@@ -39,5 +39,8 @@ FROM debian:bookworm-slim
 COPY --from=builder /downloads /data
 COPY --from=builder /osrm-bin/binding /osrm-bin
 
+# Проверка наличия файлов
+RUN ls -l /data && ls -l /osrm-bin
+
 # Запуск OSRM
 ENTRYPOINT ["/osrm-bin/osrm-routed", "--algorithm", "mld", "/data/volga_ural.osrm"]
